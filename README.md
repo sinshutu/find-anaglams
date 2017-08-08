@@ -9,5 +9,16 @@
 
 
 ## 実装
-pythonで実装
+python3で実装
+
 pykakasiを用いて漢字・かなをローマ字へ変換する
+
+取得したデータはSQLiteなどを用いて保持することを考えている
+
+## 実行方法
+```
+$ pyvenv venv
+$ source ./venv/bin/activate
+$ pip install -r requirements.txt
+$ pyhton find-anaglam.py
+```
