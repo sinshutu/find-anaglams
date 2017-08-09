@@ -1,7 +1,6 @@
 # coding: utf-8
 import os #テスト用
-
-
+    
 #ひらがなをローマ字で返す########################################
 def jap_to_Alphabet(jap): 
     japWords   = list(jap)
