@@ -16,7 +16,7 @@ def jap_to_Alphabet(jap):
                  'まみむめも'\
                  'や＿ゆ＿よ'\
                  'らりるれろ'\
-                 'わ＿を＿ん'\
+                 'わ＿を＿＿'\
                  'がぎぐげご'\
                  'ざじずぜぞ'\
                  'だぢづでど'\
@@ -26,8 +26,11 @@ def jap_to_Alphabet(jap):
                  '＿＿っ＿＿'\
                  'ゃ＿ゅ＿ょ'
                  ) 
-    initial = ",k,s,t,n,h,m,y,r,w,g,z,d,b,p,x,xt,xy".split(",")
-    aiueo   = list("aiueo")        
+    initial     = ",k,s,t,n,h,m,y,r,w,g,z,d,b,p,x,xt,xy".split(",")
+    aiueo       = list("aiueo")        
+    
+    specialWords = {'ん':'n','ー':'-'}
+    
     ans = ''
     
     for jp in japWords:                         #入力文字　一文字ずつ
@@ -36,6 +39,12 @@ def jap_to_Alphabet(jap):
                 ans += initial[int(idx/5)]
                 ans += aiueo[int(idx%5)]   
                 continue
+        for sp in specialWords:
+            if jp == sp:
+                ans += specialWords[sp] 
+                continue
+
+            
     return ans
 
 
