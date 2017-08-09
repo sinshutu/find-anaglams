@@ -3,6 +3,7 @@
 
 from pykakasi import kakasi,wakati
 
+text = "案内"
 kakasi = kakasi()
 kakasi.setMode("H","a") # default: Hiragana no conversion
 kakasi.setMode("K","a") # default: Katakana no conversion
@@ -12,16 +13,5 @@ kakasi.setMode("r","Hepburn") # default: use Hepburn Roman table
 # kakasi.setMode("c", False) # capitalize default: no Capitalize
 
 conv = kakasi.getConverter()
-
-def converion(romazi):
-    mozi_dict = {chr(i):0 for i in range(97, 123)}
-    for mozi in romazi:
-        mozi_dict[mozi] += 1
-    return mozi_dict
-
-if __name__ == '__main__':
-    text = input()
-    result = conv.do(text)
-    print('out: ', end='')
-    print(result)
-    print(converion(result))
+result = conv.do(text)
+print(result)
