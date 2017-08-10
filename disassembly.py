@@ -2,25 +2,39 @@
 # -*- coding: utf-8 -*-
 
 from pykakasi import kakasi,wakati
+import sqlite3
+import os
+import json
 
 kakasi = kakasi()
 kakasi.setMode("H","a") # default: Hiragana no conversion
 kakasi.setMode("K","a") # default: Katakana no conversion
 kakasi.setMode("J","a") # default: Japanese no conversion
 kakasi.setMode("r","Hepburn") # default: use Hepburn Roman table
-
 conv = kakasi.getConverter()
+
+data_path = 'var/'
+if not os.path.exists(data_path):
+    os.mkdir(data_path)
+conn = sqlite3.connect(data_path + 'data.db')
 
 
 def disassembly():
-    text = _load_text()
+    _pre_init()
+    text = '旅人'
     count_list = _alphabet_count(text)
-    _save(count_list)
+    _save(text, count_list)
 
 
-def _load_text():
-    text = '案内'
-    return text
+def _pre_init():
+    # conn.execute('''drop table alphabet''')
+    create_table = '''create table if not exists alphabet (
+                                        id integer primary key autoincrement,
+                                        raw_data text,
+                                        alphabet_list json
+                                        )'''
+    conn.execute(create_table)
+
 
 def _alphabet_count(text):
     romazi = conv.do(text)
@@ -30,5 +44,11 @@ def _alphabet_count(text):
     return [count for (mozi, count) in mozi_dict.items()]
 
 
-def _save(count_list):
-    pass
+def _save(raw_data, count_list):
+    count_list = json.dumps(count_list)
+    insert_data = '''insert into alphabet
+                                        (raw_data,
+                                        alphabet_list) values (?, ?)'''
+    conn.execute(insert_data, (raw_data, count_list))
+    conn.commit()
+    conn.close()
