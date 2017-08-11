@@ -19,19 +19,21 @@ if not os.path.exists(data_path):
 conn = sqlite3.connect(data_path + 'data.db')
 
 
-def disassembly():
+def disassembly(text):
+    if not text:
+        return None
     _pre_init()
-    text = '旅人'
     count_list = _alphabet_count(text)
     _save(text, count_list)
+    return True
 
 
 def _pre_init():
-    # conn.execute('''drop table alphabet''')
+    conn.execute('''drop table alphabet''')
     create_table = '''create table if not exists alphabet (
                                         id integer primary key autoincrement,
                                         raw_data text,
-                                        alphabet_list json
+                                        alphabet_list text
                                         )'''
     conn.execute(create_table)
 
@@ -41,7 +43,7 @@ def _alphabet_count(text):
     mozi_dict = {chr(i):0 for i in range(97, 123)}
     for mozi in romazi:
         mozi_dict[mozi] += 1
-    return [count for (mozi, count) in mozi_dict.items()]
+    return ''.join(map(str, [count for (mozi, count) in mozi_dict.items()]))
 
 
 def _save(raw_data, count_list):
