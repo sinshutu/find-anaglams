@@ -29,7 +29,7 @@ def disassembly(text):
 
 
 def _pre_init():
-    conn.execute('''drop table alphabet''')
+    # conn.execute('''drop table alphabet''')
     create_table = '''create table if not exists alphabet (
                                         id integer primary key autoincrement,
                                         raw_data text,
@@ -53,4 +53,3 @@ def _save(raw_data, count_list):
                                         alphabet_list) values (?, ?)'''
     conn.execute(insert_data, (raw_data, count_list))
     conn.commit()
-    conn.close()
