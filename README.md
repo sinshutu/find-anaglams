@@ -20,5 +20,5 @@ pykakasiを用いて漢字・かなをローマ字へ変換する
 $ pyvenv venv
 $ source ./venv/bin/activate
 $ pip install -r requirements.txt
-$ pyhton find-anaglam.py
+$ python find-anaglam.py
 ```
