@@ -10,7 +10,8 @@
     <!-- <link rel="shortcut icon" href=""> -->
   </head>
   <body>
-    <form action="/create" method="POST">
+    <!--<form action="/create" method="POST">-->
+    <form action="/" method="POST">
       追加:
       <input type="text" name="text">
       <button type="submit">登録</button>

@@ -1,0 +1,10 @@
+メモ
+
+grouping.py
+  アルファベットの配分と属するidとrawdataが返る
+  alphabt_list_group[a:1,b:0,c:0,d:1,...,z:0]=[{"id":ad,},{"id":da}]
+
+disassembly.py
+  table作成(なければ)
+  アルファベット分解の個数に変換
+  sqliteへ保存
