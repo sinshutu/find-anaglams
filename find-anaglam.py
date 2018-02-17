@@ -6,6 +6,7 @@ from anaglam.disassembly import disassembly
 from anaglam.grouping import get_group
 
 debug(True) 
+disassembly("アナグラム")
 
 @route('/')
 def index():
