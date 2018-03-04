@@ -10,7 +10,9 @@ kakasi = kakasi()
 kakasi.setMode("H","a") # default: Hiragana no conversion
 kakasi.setMode("K","a") # default: Katakana no conversion
 kakasi.setMode("J","a") # default: Japanese no conversion
-kakasi.setMode("r","Hepburn") # default: use Hepburn Roman table
+#kakasi.setMode("r","Hepburn") # default: use Hepburn Roman table
+#kakasi.setMode("r","Kunrei")  
+kakasi.setMode("r","Passport") 
 conv = kakasi.getConverter()
 
 data_path = 'var/'
@@ -27,7 +29,11 @@ def disassembly(text):
     _save(text, count_list)
     return True
 
-
+def show_alphabet_count(text):
+    kazu = list(_alphabet_count(text))
+    mozi = [chr(i) for i in range(97, 123)]
+    return "".join((mozi[i]+kazu[i] for i in range(len(kazu)))) 
+ 
 def _pre_init():
     # conn.execute('''drop table alphabet''')
     create_table = '''create table if not exists alphabet (
